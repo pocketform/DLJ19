@@ -3,13 +3,11 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
-	[HideInInspector]
-	public bool facingRight = true;			// For determining which way the player is currently facing.
-	[HideInInspector]
-	public bool jump = false;				// Condition for whether the player should jump.
+	[HideInInspector] public bool facingRight = true;			// For determining which way the player is currently facing.
+	[HideInInspector] public bool jump = false;             // Condition for whether the player should jump.
+    int junmTime = 0;
 
-
-	public float moveForce = 365f;			// Amount of force added to move the player left and right.
+    public float moveForce = 365f;			// Amount of force added to move the player left and right.
 	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
 	public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
@@ -83,6 +81,7 @@ public class PlayerControl : MonoBehaviour
 			// Add a vertical force to the player.
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
 
+            junmTime += 1; 
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
 		}
