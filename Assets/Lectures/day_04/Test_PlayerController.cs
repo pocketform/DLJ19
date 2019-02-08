@@ -21,6 +21,9 @@ public class Test_PlayerController : MonoBehaviour
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
+    public Animator myA;
+    private bool faceRight = true;
+
     private void Start()
     {
         //设置碰撞对象检测
@@ -39,6 +42,22 @@ public class Test_PlayerController : MonoBehaviour
 
         Vector2 currentMove = targetVelocity;
         currentMove.x = Input.GetAxis("Horizontal");
+
+        if (currentMove.x > 0)
+        {
+            if (!faceRight)
+            {
+                this.gameObject.GetComponent<Transform>().localScale = new Vector3(this.gameObject.GetComponent<Transform>().localScale.x * -1,0,0);
+            }
+        }
+        if (currentMove.x < 0)
+        {
+            if (faceRight)
+            {
+                this.gameObject.GetComponent<Transform>().localScale = new Vector3(this.gameObject.GetComponent<Transform>().localScale.x * -1, 0, 0);
+            }
+        }
+
         if (Input.GetButtonDown("Jump") && grounded)
         {
             velocity.y = jumpSpeed;
@@ -66,6 +85,7 @@ public class Test_PlayerController : MonoBehaviour
         Vector2 deltaPosition = velocity * Time.deltaTime;
         Vector2 moveAlongGround = new Vector2(groundNormal.y, groundNormal.x);
         Vector2 move = moveAlongGround * deltaPosition.x;
+        myA.SetFloat("speed",Mathf.Abs(move.x));//设置动画参数
         Movement(move, false);
 
         //计算垂直运动
@@ -95,7 +115,7 @@ public class Test_PlayerController : MonoBehaviour
                 //print(hitBufferList[i].collider.name);
                 Vector2 currentNormal = hitBufferList[i].normal;
                 //print("Point :" + hitBufferList[i].point + " Normal :" + hitBuffer[i].normal);
-                Debug.DrawLine(new Vector3(hitBufferList[i].point.x, hitBufferList[i].point.y, 0), new Vector3(hitBufferList[i].normal.x + hitBufferList[i].point.x, hitBufferList[i].normal.y + hitBufferList[i].point.y, 0), Color.red,2.0f);
+                //Debug.DrawLine(new Vector3(hitBufferList[i].point.x, hitBufferList[i].point.y, 0), new Vector3(hitBufferList[i].normal.x + hitBufferList[i].point.x, hitBufferList[i].normal.y + hitBufferList[i].point.y, 0), Color.red,2.0f);
                 //检测坡度倾斜度是否比需要的坡度大
                 if (currentNormal.y > minGroundNormalY)
                 {
