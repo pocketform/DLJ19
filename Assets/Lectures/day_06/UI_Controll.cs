@@ -12,7 +12,10 @@ public class UI_Controll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        slider.value = CrossSceneDate.G_Life;
+
+        scoreInt = CrossSceneDate.G_Score;
+        scoreText.text = scoreInt.ToString();
     }
 
     // Update is called once per frame
@@ -20,21 +23,38 @@ public class UI_Controll : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            slider.value += 1;
+            //slider.value += 1;
+            ChangeLive(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            slider.value -= 1;
+            //slider.value -= 1;
+            ChangeLive(-1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            scoreInt += 1;
-            scoreText.text = scoreInt.ToString();
+            //scoreInt += 1;
+            //scoreText.text = scoreInt.ToString();
+            changeScore(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            scoreInt -= 1;
-            scoreText.text = scoreInt.ToString();
+            //scoreInt -= 1;
+            //scoreText.text = scoreInt.ToString();
+            changeScore(-1);
         }
+    }
+
+    public void ChangeLive(int num)
+    {
+        slider.value += num;
+        CrossSceneDate.G_Life = (int)slider.value;
+    }
+    public void changeScore(int num)
+    {
+        //print("in changeScore");
+        scoreInt += num;
+        scoreText.text = scoreInt.ToString();
+        CrossSceneDate.G_Score = scoreInt;
     }
 }

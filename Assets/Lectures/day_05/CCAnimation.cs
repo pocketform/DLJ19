@@ -13,7 +13,7 @@ public class CCAnimation : MonoBehaviour
     protected bool grounded = false;
     protected Vector2 groundNormal;
 
-    protected Vector2 velocity;
+    [HideInInspector] public Vector2 velocity;
     protected ContactFilter2D contactFilter; //碰撞筛选器
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
     protected List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(16);
@@ -21,9 +21,13 @@ public class CCAnimation : MonoBehaviour
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
-    private bool faceRight = true;
+    [HideInInspector] public bool faceRight = true;
 
     Animator AnimationControl;
+
+    public bool freezeBody = false;
+    public float freezeSpeed = 0.01f;
+    public float moveFreezeSpeed = 1f;
 
     private void Awake()
     {
@@ -47,20 +51,48 @@ public class CCAnimation : MonoBehaviour
         targetVelocity = Vector2.zero;
 
         Vector2 currentMove = targetVelocity;
-        currentMove.x = Input.GetAxis("Horizontal");
+        
 
-        //设置动画参数 walk
-        AnimationControl.SetFloat("Walk", Mathf.Abs(currentMove.x));
 
-        //添加了转向控制
-        if (currentMove.x > 0 && faceRight == false)
+        if (freezeBody == false)
         {
-            Flip();
+            currentMove.x = Input.GetAxis("Horizontal");
+            //设置动画参数 walk
+            AnimationControl.SetFloat("Walk", Mathf.Abs(currentMove.x));
+
+            //添加了转向控制
+            if (currentMove.x > 0 && faceRight == false)
+            {
+                Flip();
+            }
+            else if (currentMove.x < 0 && faceRight == true)
+            {
+                Flip();
+            }
+
         }
-        else if (currentMove.x < 0 && faceRight == true)
+        else
         {
-            Flip();
+            //if (faceRight == false)
+            //{
+            //    currentMove.x = Mathf.MoveTowards(moveFreezeSpeed, 0f, freezeSpeed);
+            //    moveFreezeSpeed = currentMove.x;
+            //}
+            //else if (faceRight == true)
+            //{
+            //    currentMove.x = Mathf.MoveTowards(moveFreezeSpeed, 0f, freezeSpeed);
+            //    moveFreezeSpeed = currentMove.x;
+            //}
+            currentMove.x = Mathf.MoveTowards(moveFreezeSpeed, 0f, freezeSpeed);
+            moveFreezeSpeed = currentMove.x;
+
+            if (currentMove.x==0)
+            {
+                freezeBody = false;
+            }
         }
+
+
 
         if (Input.GetKey(KeyCode.Z))
         {
@@ -181,5 +213,12 @@ public class CCAnimation : MonoBehaviour
         Vector3 FlipScale = this.transform.localScale;
         FlipScale.x *= -1;
         this.transform.localScale = FlipScale; 
+    }
+
+    public void Freeze(Vector2 force)
+    {
+        freezeBody = true;
+        velocity.y = force.y;
+        moveFreezeSpeed = force.x;
     }
 }
