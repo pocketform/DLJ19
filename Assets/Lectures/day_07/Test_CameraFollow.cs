@@ -25,17 +25,12 @@ public class Test_CameraFollow : MonoBehaviour
     void Update()
     {
         //No limit
-        //cameraPosition = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        cameraPosition = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        //this.gameObject.transform.position = cameraPosition;
 
         //method 01
-        //if (cameraPosition.x < minX)
-        //{
-        //    cameraPosition.x = minX;
-        //}
-        //if (cameraPosition.x > maxX)
-        //{
-        //    cameraPosition.x = maxX;
-        //}
+        //if (cameraPosition.x < minX)        {            cameraPosition.x = minX;        }
+        //if (cameraPosition.x > maxX)        {            cameraPosition.x = maxX;        }
         //cameraPosition = new Vector3(cameraPosition.x, player.transform.position.y, -10);
 
         //method 02

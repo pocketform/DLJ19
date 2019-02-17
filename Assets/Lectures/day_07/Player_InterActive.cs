@@ -29,6 +29,7 @@ public class Player_InterActive : MonoBehaviour
         
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //print(collision.gameObject.tag);
@@ -78,19 +79,26 @@ public class Player_InterActive : MonoBehaviour
         }
     }
 
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Portal" && Input.GetKeyDown(KeyCode.W))
+        //if (collision.gameObject.tag == "Portal" && Input.GetKeyDown(KeyCode.W))
+        //{
+        //    //print(CrossSceneDate.G_Scene);
+        //    if (CrossSceneDate.G_Scene == 1)
+        //    {
+        //        CrossSceneDate.ChangeLevelTwo();
+        //    }
+        //    else if (CrossSceneDate.G_Scene == 2)
+        //    {
+        //        CrossSceneDate.ChangeMainManu();
+        //    }
+        //}
+
+        if (collision.gameObject.tag == "Portal")
         {
-            //print(CrossSceneDate.G_Scene);
-            if (CrossSceneDate.G_Scene == 1)
-            {
-                CrossSceneDate.ChangeLevelTwo();
-            }
-            else if (CrossSceneDate.G_Scene == 2)
-            {
-                CrossSceneDate.ChangeMainManu();
-            }
+            print("in portal");
         }
+
     }
 }
