@@ -24,7 +24,7 @@ public class CrossSceneDate : MonoBehaviour
         }
     }
 
-    public static void ChangeLevelOne()
+    public void ChangeLevelOne()
     {
         SceneManager.LoadScene("Demo");
         G_Scene = 1;
@@ -40,5 +40,10 @@ public class CrossSceneDate : MonoBehaviour
     {
         SceneManager.LoadScene("Main_Mune");
         G_Scene = 0;
+    }
+
+    public void GameExit()
+    {
+        Application.Quit();
     }
 }

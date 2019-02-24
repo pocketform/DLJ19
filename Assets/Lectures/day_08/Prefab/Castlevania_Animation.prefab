@@ -205,6 +205,7 @@ MonoBehaviour:
   Vforce: 7
   Hforce: 2.5
   click: {fileID: 6358335406978690072}
+  coin: {fileID: 2447301189926506798, guid: 03fccc151656e444ba40a1b943447ecd, type: 3}
 --- !u!1 &6358335406978690072
 GameObject:
   m_ObjectHideFlags: 0

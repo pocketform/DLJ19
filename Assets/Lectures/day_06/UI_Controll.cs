@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UI_Controll : MonoBehaviour
 {
+    public CrossSceneDate MyCSD;
+
     public Slider slider;
     public Text scoreText;
 
@@ -48,13 +50,13 @@ public class UI_Controll : MonoBehaviour
     public void ChangeLive(int num)
     {
         slider.value += num;
-        //CrossSceneDate.G_Life = (int)slider.value;
+        CrossSceneDate.G_Life = (int)slider.value;//lecture10
     }
     public void changeScore(int num)
     {
         //print("in changeScore");
         scoreInt += num;
         scoreText.text = scoreInt.ToString();
-        //CrossSceneDate.G_Score = scoreInt;
+        CrossSceneDate.G_Score = scoreInt;//lecture10
     }
 }

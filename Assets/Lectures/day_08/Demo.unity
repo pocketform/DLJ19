@@ -4592,7 +4592,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 3.89
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4616,7 +4616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115255368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.58, y: -1.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5643,8 +5643,14 @@ PrefabInstance:
     - target: {fileID: 6358335406518637318, guid: 7e74f73e859455f48869a98c9f21ad50,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6358335406518637318, guid: 7e74f73e859455f48869a98c9f21ad50,
+        type: 3}
+      propertyPath: coin
+      value: 
+      objectReference: {fileID: 2447301189926506798, guid: 03fccc151656e444ba40a1b943447ecd,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e74f73e859455f48869a98c9f21ad50, type: 3}
 --- !u!1001 &7731173467942443278
@@ -5814,5 +5820,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7731173467758652209, guid: be809e3abc9db0e41aae9af0ac85b48e,
+        type: 3}
+      propertyPath: MyCSD
+      value: 
+      objectReference: {fileID: 7731173467942443279}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be809e3abc9db0e41aae9af0ac85b48e, type: 3}
+--- !u!114 &7731173467942443279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7731173467758652234, guid: be809e3abc9db0e41aae9af0ac85b48e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7731173467942443278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858eef2c77daf6a469f0a3e6e94608ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

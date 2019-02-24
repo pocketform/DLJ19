@@ -12,6 +12,8 @@ public class Player_InterActive : MonoBehaviour
 
     public GameObject click;
 
+    public GameObject coin;
+
     private void Awake()
     {
         UIC = GameObject.Find("Canvas").GetComponent<UI_Controll>();
@@ -82,23 +84,28 @@ public class Player_InterActive : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //if (collision.gameObject.tag == "Portal" && Input.GetKeyDown(KeyCode.W))
-        //{
-        //    //print(CrossSceneDate.G_Scene);
-        //    if (CrossSceneDate.G_Scene == 1)
-        //    {
-        //        CrossSceneDate.ChangeLevelTwo();
-        //    }
-        //    else if (CrossSceneDate.G_Scene == 2)
-        //    {
-        //        CrossSceneDate.ChangeMainManu();
-        //    }
-        //}
 
-        if (collision.gameObject.tag == "Portal")
+        if (collision.gameObject.tag == "Portal" && Input.GetKeyDown(KeyCode.W))
         {
-            print("in portal");
+            //print(CrossSceneDate.G_Scene);
+            if (CrossSceneDate.G_Scene == 1)
+            {
+                CrossSceneDate.ChangeLevelTwo();
+            }
+            else if (CrossSceneDate.G_Scene == 2)
+            {
+                CrossSceneDate.ChangeMainManu();
+            }
         }
 
+        if (collision.gameObject.tag == "Portal" && Input.GetKeyDown(KeyCode.K))
+        {
+
+            Vector3 positionCoins = this.transform.position;
+            positionCoins.y += 3f;
+            //Instantiate(coin, positionCoins, Quaternion.identity);
+            Instantiate(Resources.Load("Coin"), positionCoins, Quaternion.identity);
+            //print("in portal");
+        }
     }
 }
